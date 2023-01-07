@@ -76,7 +76,7 @@ function generatePokemon() {
 
 function clearMain() {
   main.innerHTML = `
-  <h2>Charizard</h2>
+  <h2>Random</h2>
   <img
     class="sprite-main"
     src="./Img/Pokemon-Pokeball.png"

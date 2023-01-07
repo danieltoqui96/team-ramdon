@@ -24,7 +24,16 @@
 }
 
 .header {
-  background: rgba(0, 0, 0, 0.3);
+  background: linear-gradient(
+    90deg,
+    rgb(0, 0, 0, 0.4),
+    rgb(0, 0, 0, 0.4),
+    rgb(255, 255, 255, 0.9),
+    rgb(0, 0, 0, 0.4),
+    rgb(0, 0, 0, 0.4)
+  );
+  background-size: 150% 150%;
+  animation: gradient-animation 4s ease infinite;
   width: 100%;
 }
 h1 {
@@ -51,7 +60,14 @@ h1 {
 }
 
 .main {
-  background: rgb(255, 255, 255, 0.7);
+  background: linear-gradient(
+    30deg,
+    rgb(0, 0, 0, 0.4),
+    rgb(255, 255, 255, 0.9),
+    rgb(0, 0, 0, 0.4)
+  );
+  background-size: 200% 200%;
+  animation: gradient-animation 4s ease infinite;
   margin: 10px;
   padding: 10px;
   display: flex;
@@ -60,10 +76,17 @@ h1 {
   width: 200px;
   border-radius: 20%;
   border: 5px groove rgb(255, 255, 255, 0.55);
-  transition: 1s;
 }
 .main:hover {
-  background: rgb(255, 255, 255, 0.95);
+  background: linear-gradient(
+    30deg,
+    rgb(0, 0, 0, 0.4),
+    rgb(255, 255, 255, 0.9),
+    rgb(0, 0, 0, 0.4)
+  );
+  background-size: 200% 200%;
+  animation: gradient-animation 2s ease infinite;
+  transition: 1s;
 }
 button {
   background-color: #e54d42;
@@ -104,7 +127,14 @@ h2::selection {
   width: 100%;
 }
 .pokemon-team {
-  background: rgb(255, 255, 255, 0.7);
+  background: linear-gradient(
+    30deg,
+    rgb(0, 0, 0, 0.4),
+    rgb(255, 255, 255, 0.9),
+    rgb(0, 0, 0, 0.4)
+  );
+  background-size: 200% 200%;
+  animation: gradient-animation 6s ease infinite;
   width: 16%;
   margin: 0.33%;
   box-sizing: border-box;
@@ -115,8 +145,14 @@ h2::selection {
   border-radius: 10%;
 }
 .pokemon-team:hover {
-  background: rgb(255, 255, 255, 0.95);
-  transition: 1s;
+  background: linear-gradient(
+    30deg,
+    rgb(0, 0, 0, 0.4),
+    rgb(255, 255, 255, 0.9),
+    rgb(0, 0, 0, 0.4)
+  );
+  background-size: 200% 200%;
+  animation: gradient-animation 3s ease infinite;
 }
 .sprite-team {
   margin: 0 20%;
@@ -136,20 +172,64 @@ img {
 }
 
 .shiny {
-  box-shadow: 0 0 10px rgb(255, 255, 255);
-  background: rgb(255, 255, 0, 0.7);
-  transition: 1s;
+  box-shadow: 0 0 5px #3cf5e0;
+  background: linear-gradient(
+    45deg,
+    rgb(252, 240, 3, 0.7),
+    rgb(3, 252, 231, 0.7),
+    rgb(238, 179, 242, 0.7),
+    rgb(5, 245, 45, 0.7)
+  );
+  background-size: 200% 200%;
+  animation: gradient-animation 4s ease infinite;
 }
 .shiny:hover {
-  box-shadow: 0 0 20px rgb(255, 255, 0);
-  background: rgb(255, 255, 0, 0.95);
-}
-.shiny-team {
-  box-shadow: 0 0 10px rgb(255, 255, 255);
-  background: rgb(255, 255, 0, 0.7);
+  box-shadow: 0 0 20px #3cf5e0;
+  background: linear-gradient(
+    135deg,
+    rgb(252, 240, 3, 0.7),
+    rgb(3, 252, 231, 0.7),
+    rgb(238, 179, 242, 0.7),
+    rgb(5, 245, 45, 0.7)
+  );
+  background-size: 200% 200%;
+  animation: gradient-animation 2s ease infinite;
   transition: 1s;
 }
+.shiny-team {
+  box-shadow: 0 0 5px #3cf5e0;
+  background: linear-gradient(
+    30deg,
+    rgb(252, 240, 3, 0.7),
+    rgb(3, 252, 231, 0.7),
+    rgb(238, 179, 242, 0.7),
+    rgb(5, 245, 45, 0.7)
+  );
+  background-size: 200% 200%;
+  animation: gradient-animation 6s ease infinite;
+}
 .shiny-team:hover {
-  box-shadow: 0 0 20px rgb(255, 255, 0, 0.3);
-  background: rgb(255, 255, 0, 0.95);
+  box-shadow: 0 0 20px #3cf5e0;
+  background: linear-gradient(
+    120deg,
+    rgb(252, 240, 3, 0.7),
+    rgb(3, 252, 231, 0.7),
+    rgb(238, 179, 242, 0.7),
+    rgb(5, 245, 45, 0.7)
+  );
+  background-size: 200% 200%;
+  animation: gradient-animation 3s ease infinite;
+  transition: 1s;
+}
+
+@keyframes gradient-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
