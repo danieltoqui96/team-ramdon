@@ -1,16 +1,21 @@
 const randomButton = document.getElementById("random-button");
-const randomPoke = document.getElementsByClassName("random-poke")[0];
-const randomTeam = document.getElementsByClassName("team-random")[0];
+const pokeRandom = document.getElementsByClassName("poke-random")[0];
+const team = document.getElementsByClassName("team")[0];
+
+let count = 0;
 
 randomButton.addEventListener("click", async () => {
-  const apiUrl = `https://pokeapi.co/api/v2/pokemon/${
-    Math.floor(Math.random() * 905) + 1
-  }`;
-  const tipeSprite = Math.random() < 0.9;
-  const sprite = tipeSprite ? "front_default" : "front_shiny";
+  if (count === 6) {
+    return;
+  }
+  const randomId = Math.floor(Math.random() * 905) + 1;
+  const apiUrl = `https://pokeapi.co/api/v2/pokemon/${randomId}`;
+  const tipeSprite = Math.random() < 0.1;
+  const sprite = tipeSprite ? "front_shiny" : "front_default";
+  if (randomId === 718) sprite = "front_default";
 
   try {
-    randomPokeDom(false);
+    pokeRandomDom();
 
     const response = await fetch(apiUrl);
     const data = await response.json();
@@ -19,54 +24,69 @@ randomButton.addEventListener("click", async () => {
       image: data.sprites.other.home[sprite],
       isShiny: tipeSprite,
     };
-    console.log(pokemon);
 
-    randomPokeDom(true, pokemon);
+    pokeRandomDom(pokemon);
     pokeTeamDom(pokemon);
+
+    count++;
   } catch (error) {}
 });
 
-const randomPokeDom = (loading, pokemon = null) => {
-  randomPoke.innerHTML = "";
+const pokeRandomDom = (pokemon = null) => {
+  pokeRandom.innerHTML = "";
+  pokeRandom.classList.remove("shiny");
 
   const h2 = document.createElement("h2");
   const imgContainer = document.createElement("div");
-  imgContainer.classList.add("img-container");
   const img = document.createElement("img");
 
-  if (loading === true) {
+  imgContainer.classList.add("img-poke-random");
+
+  if (pokemon) {
     h2.textContent = pokemon.name;
     img.src = pokemon.image;
     img.alt = pokemon.name;
+    if (pokemon.isShiny) pokeRandom.classList.add("shiny");
   } else {
     h2.textContent = "Cargando";
-    img.src = "./img/ball.png";
+    img.src = "./img/ball.svg";
     img.alt = "ball";
     img.classList.add("loader");
   }
   imgContainer.appendChild(img);
-  randomPoke.appendChild(h2);
-  randomPoke.appendChild(imgContainer);
+  pokeRandom.appendChild(h2);
+  pokeRandom.appendChild(imgContainer);
 };
 
 const pokeTeamDom = (pokemon) => {
-  console.log("hola");
   const card = document.createElement("div");
   const imgContainer = document.createElement("div");
   const img = document.createElement("img");
   const span = document.createElement("span");
 
+  const remove = document.createElement("div");
+  remove.textContent = "x";
+  remove.classList.add("remove");
+
+  remove.addEventListener("click", (event) => {
+    const parentElement = event.target.parentNode;
+    parentElement.remove();
+    count--;
+  });
+
+  card.appendChild(remove);
+
   img.src = pokemon.image;
   img.alt = pokemon.name;
   span.textContent = pokemon.name;
 
-  card.classList.add("pokemon");
-  imgContainer.classList.add("img-pokemon");
+  card.classList.add("poke-team");
+  if (pokemon.isShiny) card.classList.add("shiny");
+  imgContainer.classList.add("img-poke-team");
 
   imgContainer.appendChild(img);
   card.appendChild(imgContainer);
   card.appendChild(span);
 
-  randomTeam.appendChild(card);
-  console.log(randomTeam);
+  team.appendChild(card);
 };
