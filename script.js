@@ -10,7 +10,7 @@ randomButton.addEventListener("click", async () => {
   }
   const randomId = Math.floor(Math.random() * 905) + 1;
   const apiUrl = `https://pokeapi.co/api/v2/pokemon/${randomId}`;
-  const tipeSprite = Math.random() < 0.1;
+  const tipeSprite = Math.random() < 0.8;
   const sprite = tipeSprite ? "front_shiny" : "front_default";
   if (randomId === 718) sprite = "front_default";
 
