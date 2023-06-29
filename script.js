@@ -1,85 +1,50 @@
 const generate = document.getElementById("generate");
 const clear = document.getElementById("clear");
-const main = document.getElementById("main");
+const randomPoke = document.getElementsByClassName("random-poke")[0];
 const team = document.getElementById("team");
 
 const teamRandom = [];
 
-function generatePokemon() {
+const getPoke = async () => {
   const apiUrl = `https://pokeapi.co/api/v2/pokemon/${
     Math.floor(Math.random() * 905) + 1
   }`;
-  if (teamRandom.length == 5) {
-    generate.style.visibility = "hidden";
-  }
-  // Hacemos una llamada a la API y almacenamos los datos en el objeto cache
+  // revisar
+  // if (teamRandom.length == 5) {
+  //   generate.style.visibility = "hidden";
+  // }
   const spriteType = Math.random() < 0.9 ? "front_default" : "front_shiny";
-  fetch(apiUrl)
-    .then((res) => res.json())
-    .then((data) => {
-      main.innerHTML = `
-      <h2>${data.name.charAt(0).toUpperCase() + data.name.slice(1)}</h2>
-      <img
-        class="sprite-main"
-        src="${data.sprites.other.home[spriteType]}"
-        alt="${data.name}"
-      />
-      </div>
-      `;
-      data.estado = spriteType;
-      teamRandom.push(data);
-      if (data.estado == "front_shiny") {
-        // main.style.transition = "background 1s";
-        main.classList.add("shiny");
-      } else {
-        main.classList.remove("shiny");
-      }
-      let img = "";
-      for (let i = 0; i < teamRandom.length; i++) {
-        if (teamRandom[i].estado == "front_shiny") {
-          img =
-            img +
-            `
-            <div class="pokemon-team shiny-team">
-              <img 
-                class="sprite-team"
-                src="${teamRandom[i].sprites[teamRandom[i].estado]}"
-                alt="${teamRandom[i].name}"
-              />
-              <h3>${
-                teamRandom[i].name.charAt(0).toUpperCase() +
-                teamRandom[i].name.slice(1)
-              }</h3>
-            </div>
-            `;
-        } else {
-          img =
-            img +
-            `
-            <div class="pokemon-team">
-              <img 
-                class="sprite-team"
-                src="${teamRandom[i].sprites[teamRandom[i].estado]}"
-                alt="${teamRandom[i].name}"
-              />
-              <h3>${
-                teamRandom[i].name.charAt(0).toUpperCase() +
-                teamRandom[i].name.slice(1)
-              }</h3>
-            </div>
-            `;
-        }
-      }
-      team.innerHTML = img;
-    });
-}
+  try {
+    const response = await fetch(apiUrl);
+    const data = await response.json();
+    const pokemon = {
+      id: data.id,
+      name: data.name,
+      sprite: data.sprites.other.home[spriteType],
+      isShiny: spriteType,
+    };
+    console.log(pokemon);
+
+    randomPoke.innerHTML = "";
+    const h2 = document.createElement("h2");
+    h2.textContent = pokemon.name;
+    const imgContainer = document.createElement("div");
+    imgContainer.classList.add("img-container");
+    const img = document.createElement("img");
+    img.src = pokemon.sprite;
+    img.alt = pokemon.name;
+    imgContainer.appendChild(img);
+    randomPoke.appendChild(h2);
+    randomPoke.appendChild(imgContainer);
+  } catch (error) {}
+};
 
 function clearMain() {
-  main.innerHTML = `
+  randomPoke.innerHTML = `
   <h2>Random</h2>
   <img
     class="sprite-main"
-    src="./Img/Pokemon-Pokeball.png"
+    src="./img/ball.png"
     alt="pokemon"
   />`;
   team.innerHTML = "";
@@ -91,5 +56,5 @@ function clearMain() {
 }
 
 // Agregamos un evento al botón para que al hacer clic se genere una nueva imagen
-generate.addEventListener("click", generatePokemon);
+generate.addEventListener("click", getPoke);
 clear.addEventListener("click", clearMain);
