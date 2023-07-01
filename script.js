@@ -7,20 +7,24 @@ let count = 0;
 randomButton.addEventListener("click", async () => {
   if (count === 6) {
     randomButton.disabled = true;
-
     return;
   }
+
   randomButton.disabled = true;
 
-  const randomId = Math.floor(Math.random() * 905) + 1;
-  const apiUrl = `https://pokeapi.co/api/v2/pokemon/${randomId}`;
-  const tipeSprite = Math.random() < 0.1;
+  // 905
+  const minId = 1;
+  const maxId = 905;
+  const randomId = Math.floor(Math.random() * (maxId - minId + 1)) + minId;
+
+  const tipeSprite =
+    Math.random() < 0.1 && randomId !== 718 && randomId !== 774;
   const sprite = tipeSprite ? "front_shiny" : "front_default";
-  if (randomId === 718 || randomId === 774) sprite = "front_default";
 
   try {
     pokeRandomDom();
 
+    const apiUrl = `https://pokeapi.co/api/v2/pokemon/${randomId}`;
     const response = await fetch(apiUrl);
     const data = await response.json();
     const pokemon = {
@@ -33,7 +37,6 @@ randomButton.addEventListener("click", async () => {
     pokeTeamDom(pokemon);
 
     count++;
-
     randomButton.disabled = false;
   } catch (error) {
     randomButton.disabled = false;

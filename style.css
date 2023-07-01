@@ -55,7 +55,9 @@ button {
   font-weight: bold;
   border-radius: 10px;
   border: none;
-  box-shadow: inset 0px 1px 3px rgba(50, 50, 70), 0px 2px 3px rgba(50, 50, 70);
+  /* box-shadow: inset 0px 1px 3px rgba(50, 50, 70), 0px 2px 3px rgba(50, 50, 70); */
+  box-shadow: inset 5px 5px 10px rgba(255, 255, 255, 0.5),
+    inset -5px -5px 10px rgba(0, 0, 0, 0.5);
 }
 
 button:active {
@@ -86,7 +88,9 @@ button:disabled {
   min-width: 230px;
   border-radius: 20px;
   border: none;
-  box-shadow: 0px 5px 5px var(--color-primary);
+  /* box-shadow: 0px 5px 5px var(--color-primary); */
+  box-shadow: inset 4px 4px 10px rgba(255, 255, 255, 0.5),
+    inset -4px -4px 10px rgba(0, 0, 0, 0.5), 0px 5px 5px var(--color-primary);
 }
 
 h2 {
@@ -175,17 +179,30 @@ span {
 
 .shiny {
   background: linear-gradient(
-    135deg,
-    rgb(3, 252, 231, 0.8),
-    rgb(238, 179, 242, 0.8),
-    rgb(3, 252, 231, 0.8),
-    rgb(252, 240, 3, 0.8),
-    rgb(3, 252, 231, 0.8)
+    to right,
+    rgb(254, 240, 138, 0.9),
+    rgb(250, 204, 21, 0.9),
+    rgb(161, 98, 7, 1)
   );
-  background-size: 800% 800%;
-  animation: gradient-animation 4s ease infinite;
+  background-size: 400% 400%;
   position: relative;
   color: var(--color-primary);
+  animation: shiny-card 6s ease infinite;
+}
+
+@keyframes shiny-card {
+  0% {
+    background-position: 0% 50%;
+    color: black;
+  }
+  50% {
+    background-position: 100% 50%;
+    color: white;
+  }
+  100% {
+    background-position: 0% 50%;
+    color: black;
+  }
 }
 
 .shiny::before {
@@ -196,6 +213,18 @@ span {
   width: 20px;
   height: 20px;
   background: url("./img/shiny.svg");
+  animation: shiny-icon 4s ease infinite;
+}
+@keyframes shiny-icon {
+  0% {
+    filter: invert(0%);
+  }
+  50% {
+    filter: invert(100%);
+  }
+  100% {
+    filter: invert(0%);
+  }
 }
 
 @keyframes gradient-animation {
