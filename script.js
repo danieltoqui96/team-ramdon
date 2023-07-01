@@ -16,7 +16,7 @@ randomButton.addEventListener("click", async () => {
   const apiUrl = `https://pokeapi.co/api/v2/pokemon/${randomId}`;
   const tipeSprite = Math.random() < 0.1;
   const sprite = tipeSprite ? "front_shiny" : "front_default";
-  if (randomId === 718) sprite = "front_default";
+  if (randomId === 718 || randomId === 774) sprite = "front_default";
 
   try {
     pokeRandomDom();
@@ -96,6 +96,10 @@ const pokeTeamDom = (pokemon) => {
   imgContainer.appendChild(img);
   card.appendChild(imgContainer);
   card.appendChild(span);
-
   team.appendChild(card);
+
+  setTimeout(() => {
+    card.classList.add("show");
+    imgContainer.classList.add("show");
+  }, 10);
 };
