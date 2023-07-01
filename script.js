@@ -4,9 +4,17 @@ const team = document.getElementsByClassName("team")[0];
 
 let count = 0;
 
+const reset = () => {
+  randomButton.textContent = "reset";
+  count = 0;
+  team.textContent = "";
+};
+
 randomButton.addEventListener("click", async () => {
   if (count === 6) {
-    randomButton.disabled = true;
+    count = 0;
+    team.textContent = "";
+    randomButton.textContent = "Generar";
     return;
   }
 
@@ -37,10 +45,13 @@ randomButton.addEventListener("click", async () => {
     pokeTeamDom(pokemon);
 
     count++;
+    randomButton.disabled = false;
   } catch (error) {
     randomButton.disabled = false;
   }
-  randomButton.disabled = count === 6 || false;
+  if (count === 6) {
+    randomButton.textContent = "Limpiar";
+  }
 });
 
 const pokeRandomDom = (pokemon = null) => {
@@ -75,18 +86,18 @@ const pokeTeamDom = (pokemon) => {
   const img = document.createElement("img");
   const span = document.createElement("span");
 
-  const remove = document.createElement("div");
-  remove.textContent = "x";
-  remove.classList.add("remove");
+  // const remove = document.createElement("div");
+  // remove.textContent = "x";
+  // remove.classList.add("remove");
 
-  remove.addEventListener("click", (event) => {
-    const parentElement = event.target.parentNode;
-    parentElement.remove();
-    count--;
-    randomButton.disabled = false;
-  });
+  // remove.addEventListener("click", (event) => {
+  //   const parentElement = event.target.parentNode;
+  //   parentElement.remove();
+  //   count--;
+  //   randomButton.disabled = false;
+  // });
 
-  card.appendChild(remove);
+  // card.appendChild(remove);
 
   img.src = pokemon.image;
   img.alt = pokemon.name;
