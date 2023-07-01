@@ -73,13 +73,13 @@ button:disabled {
 .poke-random {
   margin: 20px 20px 10px 20px;
   background: linear-gradient(
-    30deg,
-    var(--color-primary) 40%,
-    rgb(255, 255, 255, 0.8),
-    var(--color-primary) 60%
+    to right,
+    var(--color-primary),
+    rgb(20, 20, 20, 0.3),
+    var(--color-primary)
   );
-  background-size: 600% 600%;
-  animation: gradient-animation 4s ease infinite;
+  background-size: 400% 400%;
+  animation: gradient-animation 6s ease infinite;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -153,6 +153,7 @@ span {
   opacity: 0;
   transition: opacity 1.5s ease-in;
 }
+
 .img-poke-team.show {
   opacity: 1;
 }
@@ -208,13 +209,14 @@ span {
 .shiny::before {
   content: "";
   position: absolute;
-  top: 5px;
-  left: 5px;
+  top: 10px;
+  left: 10px;
   width: 20px;
   height: 20px;
   background: url("./img/shiny.svg");
-  animation: shiny-icon 4s ease infinite;
+  animation: shiny-icon 6s ease infinite;
 }
+
 @keyframes shiny-icon {
   0% {
     filter: invert(0%);
