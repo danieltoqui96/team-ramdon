@@ -10,8 +10,6 @@ randomButton.addEventListener("click", async () => {
     return;
   }
 
-  randomButton.disabled = true;
-
   // 905
   const minId = 1;
   const maxId = 905;
@@ -20,6 +18,8 @@ randomButton.addEventListener("click", async () => {
   const tipeSprite =
     Math.random() < 0.1 && randomId !== 718 && randomId !== 774;
   const sprite = tipeSprite ? "front_shiny" : "front_default";
+
+  randomButton.disabled = true;
 
   try {
     pokeRandomDom();
@@ -37,10 +37,10 @@ randomButton.addEventListener("click", async () => {
     pokeTeamDom(pokemon);
 
     count++;
-    randomButton.disabled = false;
   } catch (error) {
     randomButton.disabled = false;
   }
+  randomButton.disabled = count === 6 || false;
 });
 
 const pokeRandomDom = (pokemon = null) => {
