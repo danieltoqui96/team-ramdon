@@ -6,8 +6,12 @@ let count = 0;
 
 randomButton.addEventListener("click", async () => {
   if (count === 6) {
+    randomButton.disabled = true;
+
     return;
   }
+  randomButton.disabled = true;
+
   const randomId = Math.floor(Math.random() * 905) + 1;
   const apiUrl = `https://pokeapi.co/api/v2/pokemon/${randomId}`;
   const tipeSprite = Math.random() < 0.1;
@@ -29,7 +33,11 @@ randomButton.addEventListener("click", async () => {
     pokeTeamDom(pokemon);
 
     count++;
-  } catch (error) {}
+
+    randomButton.disabled = false;
+  } catch (error) {
+    randomButton.disabled = false;
+  }
 });
 
 const pokeRandomDom = (pokemon = null) => {
@@ -49,7 +57,7 @@ const pokeRandomDom = (pokemon = null) => {
     if (pokemon.isShiny) pokeRandom.classList.add("shiny");
   } else {
     h2.textContent = "Cargando";
-    img.src = "./img/ball.svg";
+    img.src = "./img/ball.png";
     img.alt = "ball";
     img.classList.add("loader");
   }
@@ -72,6 +80,7 @@ const pokeTeamDom = (pokemon) => {
     const parentElement = event.target.parentNode;
     parentElement.remove();
     count--;
+    randomButton.disabled = false;
   });
 
   card.appendChild(remove);
