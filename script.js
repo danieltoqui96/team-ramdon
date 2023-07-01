@@ -86,19 +86,6 @@ const pokeTeamDom = (pokemon) => {
   const img = document.createElement("img");
   const span = document.createElement("span");
 
-  // const remove = document.createElement("div");
-  // remove.textContent = "x";
-  // remove.classList.add("remove");
-
-  // remove.addEventListener("click", (event) => {
-  //   const parentElement = event.target.parentNode;
-  //   parentElement.remove();
-  //   count--;
-  //   randomButton.disabled = false;
-  // });
-
-  // card.appendChild(remove);
-
   img.src = pokemon.image;
   img.alt = pokemon.name;
   span.textContent = pokemon.name;
@@ -114,6 +101,5 @@ const pokeTeamDom = (pokemon) => {
 
   setTimeout(() => {
     card.classList.add("show");
-    imgContainer.classList.add("show");
   }, 10);
 };
