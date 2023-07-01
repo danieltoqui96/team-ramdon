@@ -37,19 +37,8 @@ h1 {
   cursor: default;
   user-select: none;
 }
-h2 {
-  font-size: 20px;
-  text-transform: capitalize;
-}
-
-span {
-  font-size: 90%;
-  text-transform: capitalize;
-  text-align: center;
-}
 
 section {
-  /* background-color: #c34238; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -93,11 +82,16 @@ button:disabled {
   flex-direction: column;
   align-items: center;
   padding: 10px;
-  height: 240px;
-  min-width: 240px;
+  height: 230px;
+  min-width: 230px;
   border-radius: 20px;
   border: none;
   box-shadow: 0px 5px 5px var(--color-primary);
+}
+
+h2 {
+  font-size: 20px;
+  text-transform: capitalize;
 }
 
 .img-poke-random {
@@ -110,7 +104,6 @@ button:disabled {
 }
 
 .img-poke-random img {
-  width: 100%;
   height: 100%;
 }
 
@@ -132,11 +125,18 @@ button:disabled {
   margin: 15px;
   position: relative;
   box-shadow: 0px 2px 2px var(--color-primary);
+  padding: 5px;
+}
+
+span {
+  font-size: 15px;
+  text-transform: capitalize;
+  text-align: center;
 }
 
 .img-poke-team {
-  max-width: 100px;
-  max-height: 100px;
+  max-width: 110px;
+  max-height: 110px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -222,4 +222,53 @@ button:disabled {
   animation: 1s rotate linear infinite;
   -webkit-transform-origin: 50% 50%;
   transform-origin: 50% 50%;
+}
+
+@media (max-width: 470px) {
+  body {
+    background: url(./img/paldea-min.jpg);
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover;
+  }
+
+  .poke-random {
+    padding: 5px;
+    height: 160px;
+    min-width: 160px;
+    border-radius: 10px;
+  }
+
+  h2 {
+    font-size: 15px;
+  }
+
+  .img-poke-random {
+    max-width: 130px;
+    max-height: 130px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+  }
+
+  .poke-team {
+    height: 110px;
+    width: 110px;
+    border-radius: 5px;
+    margin: 10px;
+  }
+
+  .img-poke-team {
+    max-width: 90px;
+    max-height: 90px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  span {
+    font-size: 14px;
+    text-transform: capitalize;
+    text-align: center;
+  }
 }
